@@ -48,9 +48,9 @@ export class UserRepository extends Pageable<any> implements IUserRepository {
     }
     delete(id: string): Promise<any> {
         return this.repository.users.delete({
-          where: {
-            id: id
-          }  
+            where: {
+                id: id
+            }
         })
     }
     findById(id: string): Promise<any> {
