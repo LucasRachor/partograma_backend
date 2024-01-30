@@ -48,7 +48,5 @@ export class UserService {
     const hasEMAIL = await this.userRepository.emailValidation(email)
 
     return hasRG || hasCPF || hasEMAIL
-
   }
 }
-

@@ -12,7 +12,7 @@ export class UsersController {
   @HttpCode(HttpStatus.CREATED)
   async create(@Body() payload: CreateUserDto): Promise<CreateUserDto> {
       if (await this.usersService.userExists(payload.cpf, payload.rg, payload.email)) {
-      throw new ConflictException('Usuário com informações já existentes.')
+      throw new ConflictException('Erro ao cadastrar usuário! ')
     }
     return await this.usersService.create(payload);
   }
