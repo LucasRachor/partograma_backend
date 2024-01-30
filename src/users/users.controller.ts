@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, HttpCode, HttpStatus, Query, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, HttpCode, HttpStatus, Query, Put, ConflictException } from '@nestjs/common';
 import { UserService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Page, PageResponse } from 'src/config/page.models';
@@ -10,8 +10,11 @@ export class UsersController {
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  async create(@Body() createUserDto: CreateUserDto): Promise<CreateUserDto> {
-    return await this.usersService.create(createUserDto);
+  async create(@Body() payload: CreateUserDto): Promise<CreateUserDto> {
+      if (await this.usersService.userExists(payload.cpf, payload.rg, payload.email)) {
+      throw new ConflictException('Usuário com informações já existentes.')
+    }
+    return await this.usersService.create(payload);
   }
 
   @Get()

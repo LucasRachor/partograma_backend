@@ -60,4 +60,28 @@ export class UserRepository extends Pageable<any> implements IUserRepository {
             }
         })
     }
+    async cpfValidation(cpf: string): Promise<boolean> {
+        const validation = await this.repository.users.findUnique({
+            where: {
+                cpf: cpf,
+            }
+        });
+        return !!validation;
+    }
+    async rgValidation(rg: string): Promise<boolean> {
+        const validation = await this.repository.users.findUnique({
+            where: {
+                rg: rg,
+            }
+        });
+        return !!validation;
+    }
+    async emailValidation(email: string): Promise<boolean> {
+        const validation = await this.repository.users.findUnique({
+            where: {
+                email: email,
+            }
+        });
+        return !!validation;
+    }
 }

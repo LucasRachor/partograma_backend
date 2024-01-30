@@ -41,4 +41,14 @@ export class UserService {
   async delete(id: string): Promise<any> {
     return await this.userRepository.delete(id)
   }
+
+  async userExists(rg: string, cpf: string, email: string): Promise<any> {
+    const hasRG = await this.userRepository.rgValidation(rg)
+    const hasCPF = await this.userRepository.cpfValidation(cpf)
+    const hasEMAIL = await this.userRepository.emailValidation(email)
+
+    return hasRG || hasCPF || hasEMAIL
+
+  }
 }
+

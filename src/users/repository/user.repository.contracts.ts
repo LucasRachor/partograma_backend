@@ -8,4 +8,7 @@ export default interface IUserRepository {
     update(id: string, data: UpdateUserDto): Promise<any>
     delete(id: string): Promise<any>
     findById(id: string): Promise<any>
+    rgValidation(rg: string): Promise<boolean>
+    emailValidation(email: string): Promise<boolean>
+    cpfValidation(cpf: string): Promise<boolean>
 }

@@ -10,5 +10,8 @@ CREATE TABLE `Users` (
     `updatedat` TIMESTAMP NULL,
 
     UNIQUE INDEX `Users_id_key`(`id`),
+    UNIQUE INDEX `Users_rg_key`(`rg`),
+    UNIQUE INDEX `Users_cpf_key`(`cpf`),
+    UNIQUE INDEX `Users_email_key`(`email`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
